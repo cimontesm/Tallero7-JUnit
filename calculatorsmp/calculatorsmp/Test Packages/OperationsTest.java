@@ -28,11 +28,10 @@ public class OperationsTest {
 
     @Test
     public void testMakeFormula() {
-        System.out.println("MakeFormula");
-        String expResult = "";
-        String result = Operations.MakeFormula();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        String formula = Operations.MakeFormula();
+        assertNotNull(formula, "La fórmula generada no debe ser nula");
+        assertFalse(formula.isEmpty(), "La fórmula generada no debe estar vacía");
+        assertTrue(formula.matches("[0-9+\-*/]+"), "La fórmula debe contener solo números y operadores válidos");
     }
 
     @Test
@@ -44,5 +43,29 @@ public class OperationsTest {
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
+
+
+    @Test
+    public void testSolveSimpleAddition() {
+        String formula = "1+1";
+        String result = Operations.Solve(formula);
+        assertEquals("1+1=2", result, "El resultado de 1+1 debe ser 2");
+    }
+
+    @Test
+    public void testSolveSimpleMultiplication() {
+        String formula = "2*3";
+        String result = Operations.Solve(formula);
+        assertEquals("2*3=6", result, "El resultado de 2*3 debe ser 6");
+    }
+
+    @Test
+    public void testSolveOperatorPrecedence() {
+        String formula = "1+2*3";
+        String result = Operations.Solve(formula);
+        assertEquals("1+2*3=7", result, "El resultado de 1+2*3 debe respetar la precedencia de operadores y ser 7");
+    }
+
+
 
 }
