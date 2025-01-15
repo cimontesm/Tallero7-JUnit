@@ -72,15 +72,21 @@ public class OperationsTest {
         assertEquals("2*(3+4)=14", result, "El resultado de 2*(3+4) debe ser 14"); 
 } 
 
-
-public void testSolveInvalidInput() { 
-    String formula = "abc"; 
-    Exception exception = assertThrows(NumberFormatException.class, () -> { 
-        Operations.Solve(formula); 
+    @Test
+    public void testSolveInvalidInput() { 
+       String formula = "abc"; 
+       Exception exception = assertThrows(NumberFormatException.class, () -> { 
+         Operations.Solve(formula); 
     }); 
-    assertNotNull(exception, "Una entrada inválida debe lanzar una excepción"); 
+        assertNotNull(exception, "Una entrada inválida debe lanzar una excepción"); 
 }
 
+     @Test 
+    public void testSolveNegativeNumbers() { 
+      String formula = "-1+2"; 
+      String result = Operations.Solve(formula); 
+      assertEquals("-1+2=1", result, "El resultado de -1+2 debe ser 1"); 
+} 
 
 
 }
