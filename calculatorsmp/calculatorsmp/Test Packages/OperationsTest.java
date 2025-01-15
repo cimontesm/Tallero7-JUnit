@@ -27,11 +27,26 @@ public class OperationsTest {
     }
 
     @Test
-    public void testMakeFormula() {
+    public void testFormulaLength() {
         String formula = Operations.MakeFormula();
-        assertNotNull(formula, "La fórmula generada no debe ser nula");
-        assertFalse(formula.isEmpty(), "La fórmula generada no debe estar vacía");
-        assertTrue(formula.matches("[0-9+\-*/]+"), "La fórmula debe contener solo números y operadores válidos");
+        // La longitud de la fórmula debería ser siempre impar
+        assertTrue(formula.length() % 2 != 0);
+    }
+
+    @Test
+    public void testFormulaOperators() {
+        String formula = Operations.MakeFormula();
+        assertTrue(formula.contains("+") || formula.contains("-") || formula.contains("*"));
+    }
+
+    @Test
+    public void testFormulaNumbers() {
+        String formula = Operations.MakeFormula();
+        String[] parts = formula.split("[+\\-\\*]");
+        for (String part : parts) {
+            int number = Integer.parseInt(part);
+            assertTrue(number >= 1 && number <= 99);
+        }
     }
 
     @Test
