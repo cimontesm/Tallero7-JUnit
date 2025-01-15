@@ -73,6 +73,14 @@ public class OperationsTest {
 } 
 
 
+public void testSolveInvalidInput() { 
+    String formula = "abc"; 
+    Exception exception = assertThrows(NumberFormatException.class, () -> { 
+        Operations.Solve(formula); 
+    }); 
+    assertNotNull(exception, "Una entrada inválida debe lanzar una excepción"); 
+}
+
 
 
 }
