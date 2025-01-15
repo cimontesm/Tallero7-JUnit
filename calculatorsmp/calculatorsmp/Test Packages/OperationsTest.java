@@ -65,6 +65,13 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals("1+2*3=7", result, "El resultado de 1+2*3 debe respetar la precedencia de operadores y ser 7");
     }
+    @Test 
+    public void testSolveParenthesesPrecedence() { 
+        String formula = "2*(3+4)"; 
+        String result = Operations.Solve(formula); 
+        assertEquals("2*(3+4)=14", result, "El resultado de 2*(3+4) debe ser 14"); 
+} 
+
 
 
 
